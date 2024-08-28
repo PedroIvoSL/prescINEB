@@ -85,8 +85,8 @@ def send_email_with_attachment(pdf_path, recipient_email):
     # Email credentials
     sender_email = 'prescricoesineb@gmail.com'
     sender_password = 'affr ebla htup lznh'
-    subject = 'Here is your PDF'
-    body = 'Please find the attached PDF document.'
+    subject = 'Aqui está a prescrição!'
+    body = 'PDF anexado abaixo.'
 
     # Create email
     msg = MIMEMultipart()
