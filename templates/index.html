@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescrições</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="presc-container">
+        <form action="/generate_pdf" method="POST" class="presc_form">
+            <div class="presc_top_img">
+                <img src="static/top_img.png" alt="Logo" style="max-width: 100%; height: auto;">
+            </div>
+            <div class="presc_titulo">
+                <h2>Identificação Paciente</h2>
+                <hr>
+            </div>
+            <label for="Nome">Nome do Paciente:</label>
+            <input type="text" id="Nome" name="Nome" placeholder="Nome do Paciente" title="Nome do Paciente" class="presc_inputs" required >
+            <label for="Data">Data:</label>
+            <input type="date" id="Data" name="data" title="Data" class="presc_inputs" required >
+            <div class="modalidade">
+                <label for="modalidade">Modalidade:</label>
+                <div class="checkbox-options">
+                    <input type="checkbox" id="domiciliar" name="modalidade" value="Domiciliar">
+                    <label for="domiciliar">Domiciliar</label>
+                    <input type="checkbox" id="clinica" name="modalidade" value="Clinica">
+                    <label for="clinica">Clinica</label>
+                </div>
+            </div>
+            <div class="presc_titulo">
+                <h2>Prescrição da Diálise</h2>
+                <hr>
+            </div>
+            <div class="form-row">
+                <label for="Priming">Priming:</label>
+                <input type="text" id="Priming" name="Priming" placeholder="Priming" title="Priming" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="Maquina">Máquina:</label>
+                <input type="text" id="Maquina" name="Maquina" placeholder="Máquina" title="Máquina" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="Osmose">N da Osmose:</label>
+                <input type="text" id="Osmose" name="Osmose" placeholder="N da Osmose" title="N da Osmose" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="Acesso">Acesso:</label>
+                <input type="text" id="Acesso" name="Acesso" placeholder="Acesso" title="Acesso" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="FlSanguineo">Fluxo Sanguíneo:</label>
+                <input type="text" id="FlSanguineo" name="FlSanguineo" placeholder="Fluxo Sanguíneo" title="FlSanguineo" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="UFefetiva">UF Efetiva:</label>
+                <input type="text" id="UFefetiva" name="UFefetiva" placeholder="UF Efetiva" title="UFefetiva" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="FlDialisante">Fluxo Dialisante:</label>
+                <input type="text" id="FlDialisante" name="FlDialisante" placeholder="Fluxo Dialisante" title="FlDialisante" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="BIC">BIC:</label>
+                <input type="text" id="BIC" name="BIC" placeholder="BIC" title="BIC" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="Temperatura">Temperatura:</label>
+                <input type="text" id="Temperatura" name="Temperatura" placeholder="Temperatura" title="Temperatura" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="Duracao">Duração:</label>
+                <input type="text" id="Duracao" name="Duracao" placeholder="Duração" title="Duração" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="Capilar">Capilar:</label>
+                <input type="text" id="Capilar" name="Capilar" placeholder="Capilar" title="Capilar" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="Sodio">Sódio:</label>
+                <input type="text" id="Sodio" name="Sodio" placeholder="Sódio" title="Sódio" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="PV">PV:</label>
+                <input type="text" id="PV" name="PV" placeholder="PV" title="PV" class="presc_inputs" >
+            </div>
+            <div class="form-row">
+                <label for="PesoSeco">Peso Seco:</label>
+                <input type="text" id="PV" name="PesoSeco" placeholder="Peso Seco" title="PesoSeco" class="presc_inputs" >
+            </div>
+            <hr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>DADOS</th>
+                        <th>Pré</th>
+                        <th>Pós</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Peso</td>
+                        <td><input type="text" name="pre_peso" placeholder="Pré Peso" class="presc_inputs" ></td>
+                        <td><input type="text" name="pos_peso" placeholder="Pós Peso" class="presc_inputs" ></td>
+                    </tr>
+                    <tr>
+                        <td>PA</td>
+                        <td><input type="text" name="pre_pa" placeholder="Pré PA" class="presc_inputs" ></td>
+                        <td><input type="text" name="pos_pa" placeholder="Pós PA" class="presc_inputs" ></td>
+                    </tr>
+                    <tr>
+                        <td>Dif. Peso</td>
+                        <td><input type="text" name="pre_dif_peso" placeholder="Pré Dif. Peso" class="presc_inputs" ></td>
+                        <td><input type="text" name="pos_dif_peso" placeholder="Pós Dif. Peso" class="presc_inputs" ></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <div class="residue-test">
+                <label for="residueTest">Teste de residuo quimico:</label>
+                <div class="checkbox-options">
+                    <input type="checkbox" id="positivo" name="residueTest" value="Positivo">
+                    <label for="positivo">Positivo</label>
+                    <input type="checkbox" id="negativo" name="residueTest" value="Negativo">
+                    <label for="negativo">Negativo</label>
+                    <input type="checkbox" id="pre" name="residueTest" value="Pré">
+                    <label for="pre">Pré</label>
+                    <input type="checkbox" id="pos" name="residueTest" value="Pós">
+                    <label for="pos">Pós</label>
+                    <input type="checkbox" id="usoUnico" name="residueTest" value="Uso Unico">
+                    <label for="usoUnico">Uso Unico</label>
+                </div>
+            </div>
+            <hr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>HORA</th>
+                        <th>Pressao Arterial</th>
+                        <th>Frequência Cardíaca</th>
+                        <th>Temperatura Corporal</th>
+                        <th>GLICEMIA</th>
+                        <th>FBS (ml/min)</th>
+                        <th>FBD (ml/min)</th>
+                        <th>Taxa UF</th>
+                        <th>PV (mmHg)</th>
+                        <th>PTM (mmHg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="time" name="hora1" class="presc_inputs" ></td>
+                        <td><input type="text" name="pa1" class="presc_inputs" ></td>
+                        <td><input type="text" name="fc1" class="presc_inputs" ></td>
+                        <td><input type="text" name="tax1" class="presc_inputs" ></td>
+                        <td><input type="text" name="glicemia1" class="presc_inputs" ></td>
+                        <td><input type="text" name="fb1" class="presc_inputs" ></td>
+                        <td><input type="text" name="fbd1" class="presc_inputs" ></td>
+                        <td><input type="text" name="taxa_uf1" class="presc_inputs" ></td>
+                        <td><input type="text" name="pv1" class="presc_inputs" ></td>
+                        <td><input type="text" name="ptm1" class="presc_inputs" ></td>
+                    </tr>
+                    <tr>
+                        <td><input type="time" name="hora2" class="presc_inputs" ></td>
+                        <td><input type="text" name="pa2" class="presc_inputs" ></td>
+                        <td><input type="text" name="fc2" class="presc_inputs" ></td>
+                        <td><input type="text" name="tax2" class="presc_inputs" ></td>
+                        <td><input type="text" name="glicemia2" class="presc_inputs" ></td>
+                        <td><input type="text" name="fb2" class="presc_inputs" ></td>
+                        <td><input type="text" name="fbd2" class="presc_inputs" ></td>
+                        <td><input type="text" name="taxa_uf2" class="presc_inputs" ></td>
+                        <td><input type="text" name="pv2" class="presc_inputs" ></td>
+                        <td><input type="text" name="ptm2" class="presc_inputs" ></td>
+                    </tr>
+                    <tr>
+                        <td><input type="time" name="hora3" class="presc_inputs" ></td>
+                        <td><input type="text" name="pa3" class="presc_inputs" ></td>
+                        <td><input type="text" name="fc3" class="presc_inputs" ></td>
+                        <td><input type="text" name="tax3" class="presc_inputs" ></td>
+                        <td><input type="text" name="glicemia3" class="presc_inputs" ></td>
+                        <td><input type="text" name="fb3" class="presc_inputs" ></td>
+                        <td><input type="text" name="fbd3" class="presc_inputs" ></td>
+                        <td><input type="text" name="taxa_uf3" class="presc_inputs" ></td>
+                        <td><input type="text" name="pv3" class="presc_inputs" ></td>
+                        <td><input type="text" name="ptm3" class="presc_inputs" ></td>
+                    </tr>
+                    <tr>
+                        <td><input type="time" name="hora4" class="presc_inputs" ></td>
+                        <td><input type="text" name="pa4" class="presc_inputs" ></td>
+                        <td><input type="text" name="fc4" class="presc_inputs" ></td>
+                        <td><input type="text" name="tax4" class="presc_inputs" ></td>
+                        <td><input type="text" name="glicemia4" class="presc_inputs" ></td>
+                        <td><input type="text" name="fb4" class="presc_inputs" ></td>
+                        <td><input type="text" name="fbd4" class="presc_inputs" ></td>
+                        <td><input type="text" name="taxa_uf4" class="presc_inputs" ></td>
+                        <td><input type="text" name="pv4" class="presc_inputs" ></td>
+                        <td><input type="text" name="ptm4" class="presc_inputs" ></td>
+                    </tr>
+                    <tr>
+                        <td><input type="time" name="hora5" class="presc_inputs" ></td>
+                        <td><input type="text" name="pa5" class="presc_inputs" ></td>
+                        <td><input type="text" name="fc5" class="presc_inputs" ></td>
+                        <td><input type="text" name="tax5" class="presc_inputs" ></td>
+                        <td><input type="text" name="glicemia5" class="presc_inputs" ></td>
+                        <td><input type="text" name="fb5" class="presc_inputs" ></td>
+                        <td><input type="text" name="fbd5" class="presc_inputs" ></td>
+                        <td><input type="text" name="taxa_uf5" class="presc_inputs" ></td>
+                        <td><input type="text" name="pv5" class="presc_inputs" ></td>
+                        <td><input type="text" name="ptm5" class="presc_inputs" ></td>
+                    </tr>
+                    <tr>
+                        <td><input type="time" name="hora6" class="presc_inputs" ></td>
+                        <td><input type="text" name="pa6" class="presc_inputs" ></td>
+                        <td><input type="text" name="fc6" class="presc_inputs" ></td>
+                        <td><input type="text" name="tax6" class="presc_inputs" ></td>
+                        <td><input type="text" name="glicemia6" class="presc_inputs" ></td>
+                        <td><input type="text" name="fb6" class="presc_inputs" ></td>
+                        <td><input type="text" name="fbd6" class="presc_inputs" ></td>
+                        <td><input type="text" name="taxa_uf6" class="presc_inputs" ></td>
+                        <td><input type="text" name="pv6" class="presc_inputs" ></td>
+                        <td><input type="text" name="ptm6" class="presc_inputs" ></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <label for="matmed">MAT/MED</label>
+            <table>
+                <thead>
+                    <tr>
+                        <th>MATERIAL</th>
+                        <th>QUANT</th>
+                        <th>MATERIAL</th>
+                        <th>QUANT</th>
+                        <th>MATERIAL</th>
+                        <th>QUANT</th>
+                        <th>MATERIAL</th>
+                        <th>QUANT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Agulha p/FAV n</td>
+                        <td><input type="text" name="quant1" class="presc_inputs"></td>
+                        <td>Eritromax ampola 1ml</td>
+                        <td><input type="text" name="quant2" class="presc_inputs"></td>
+                        <td>Fita HCT</td>
+                        <td><input type="text" name="quant3" class="presc_inputs"></td>
+                        <td>Seringa 1 ml</td>
+                        <td><input type="text" name="quant4" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Agulha 13x4.5</td>
+                        <td><input type="text" name="quant5" class="presc_inputs"></td>
+                        <td>Noripurum ampola 5ml</td>
+                        <td><input type="text" name="quant6" class="presc_inputs"></td>
+                        <td>Lanceta para Glicemia</td>
+                        <td><input type="text" name="quant7" class="presc_inputs"></td>
+                        <td>Seringa 60 ml</td>
+                        <td><input type="text" name="quant8" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Agulha Dull p/FAV n</td>
+                        <td><input type="text" name="quant9" class="presc_inputs"></td>
+                        <td>SG 50% ampola 10ml</td>
+                        <td><input type="text" name="quant10" class="presc_inputs"></td>
+                        <td>Heparina ml</td>
+                        <td><input type="text" name="quant11" class="presc_inputs"></td>
+                        <td>Fita micropore cm</td>
+                        <td><input type="text" name="quant12" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Agulha 40x12</td>
+                        <td><input type="text" name="quant13" class="presc_inputs"></td>
+                        <td>Fosfato de Potássio amp</td>
+                        <td><input type="text" name="quant14" class="presc_inputs"></td>
+                        <td>KCL 19,1% amopla 10ml</td>
+                        <td><input type="text" name="quant15" class="presc_inputs"></td>
+                        <td>Fita Transpore</td>
+                        <td><input type="text" name="quant16" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Agulha 30x8</td>
+                        <td><input type="text" name="quant17" class="presc_inputs"></td>
+                        <td>Sol. Ácida galão</td>
+                        <td><input type="text" name="quant18" class="presc_inputs"></td>
+                        <td>Taurolock amoplal</td>
+                        <td><input type="text" name="quant19" class="presc_inputs"></td>
+                        <td>Clorexedina Alcoolica ml</td>
+                        <td><input type="text" name="quant20" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Equipo Simples</td>
+                        <td><input type="text" name="quant21" class="presc_inputs"></td>
+                        <td>Sol. basica galão</td>
+                        <td><input type="text" name="quant22" class="presc_inputs"></td>
+                        <td>Hemodialisador</td>
+                        <td><input type="text" name="quant23" class="presc_inputs"></td>
+                        <td>Clorexedina Degerm ml</td>
+                        <td><input type="text" name="quant24" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Gazes Esteril pct.</td>
+                        <td><input type="text" name="quant25" class="presc_inputs"></td>
+                        <td>Ser. Arterial - Linha</td>
+                        <td><input type="text" name="quant26" class="presc_inputs"></td>
+                        <td>Cateter para Hemodialise</td>
+                        <td><input type="text" name="quant27" class="presc_inputs"></td>
+                        <td>Cloreto de Cálcio</td>
+                        <td><input type="text" name="quant28" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Isolador Descartavel</td>
+                        <td><input type="text" name="quant29" class="presc_inputs"></td>
+                        <td>Ser. Venoso - Linha</td>
+                        <td><input type="text" name="quant30" class="presc_inputs"></td>
+                        <td>Oclusor para Cateter</td>
+                        <td><input type="text" name="quant31" class="presc_inputs"></td>
+                        <td>Capa para cateter</td>
+                        <td><input type="text" name="quant32" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Gorro Descartavel</td>
+                        <td><input type="text" name="quant33" class="presc_inputs"></td>
+                        <td>SF 0.9% 1000ml.</td>
+                        <td><input type="text" name="quant34" class="presc_inputs"></td>
+                        <td>Seringa 3ml</td>
+                        <td><input type="text" name="quant35" class="presc_inputs"></td>
+                        <td><input type="text" name="outros1" class="presc_inputs"></td>
+                        <td><input type="text" name="quant36" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Máscara Descartavel</td>
+                        <td><input type="text" name="quant37" class="presc_inputs"></td>
+                        <td>SF 0.9% 500ml.</td>
+                        <td><input type="text" name="quant38" class="presc_inputs"></td>
+                        <td>Seringa 5ml</td>
+                        <td><input type="text" name="quant39" class="presc_inputs"></td>
+                        <td><input type="text" name="outros2" class="presc_inputs"></td>
+                        <td><input type="text" name="quant40" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Luva Proced. unidade</td>
+                        <td><input type="text" name="quant41" class="presc_inputs"></td>
+                        <td>SF 0.9% 250ml.</td>
+                        <td><input type="text" name="quant42" class="presc_inputs"></td>
+                        <td>Seringa 10ml</td>
+                        <td><input type="text" name="quant43" class="presc_inputs"></td>
+                        <td><input type="text" name="outros3" class="presc_inputs"></td>
+                        <td><input type="text" name="quant44" class="presc_inputs"></td>
+                    </tr>
+                    <tr>
+                        <td>Luva Estéril. par</td>
+                        <td><input type="text" name="quant45" class="presc_inputs"></td>
+                        <td>Sg 5% 250ml.</td>
+                        <td><input type="text" name="quant46" class="presc_inputs"></td>
+                        <td>Seringa 20ml</td>
+                        <td><input type="text" name="quant47" class="presc_inputs"></td>
+                        <td><input type="text" name="outros4" class="presc_inputs"></td>
+                        <td><input type="text" name="quant48" class="presc_inputs"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <label for="Observacoes">Evolução medica/enfermagem</label>
+            <textarea name="Observacoes" placeholder="Observações" title="Observações" class="presc_inputs"></textarea>
+            <label for="recipient_email">Email para copia:</label>
+            <input type="email" id="recipient_email" name="recipient_email" class="presc_inputs" required>
+            <button type="submit" style="display: flex; align-items: center;">Enviar <img src="static/arrow_icon.png" alt="Arrow Icon" style="margin-left: 5px;"></button>
+        </form>
+    </div>
+</body>
+</html>
