@@ -3,11 +3,11 @@ from docx import Document
 import os
 import html
 import tempfile
+import pypandoc
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 import smtplib
-from docx2pdf import convert
 
 app = Flask(__name__)
 
@@ -63,9 +63,9 @@ def generate_pdf():
             doc.save(temp_doc.name)
             temp_doc_path = temp_doc.name
 
-        # Convert DOCX to PDF using python-docx2pdf
+        # Convert DOCX to PDF using pypandoc
         pdf_path = temp_doc_path.replace(".docx", ".pdf")
-        convert(temp_doc_path, pdf_path)
+        pypandoc.convert_file(temp_doc_path, 'pdf', outputfile=pdf_path)
 
         # Remove the temporary DOCX file
         os.remove(temp_doc_path)
